@@ -1,10 +1,14 @@
+import dotenv from 'dotenv';
 import mysql2 from 'mysql2';
+
+
+dotenv.config()
 
 
 const connection=mysql2.createPool({
     host:'127.0.0.1',
     user:'root',
-    password:"database@123#",
+    password:process.env.SQL_PASSWORD,
     database:'social_media'
 }).promise()
 

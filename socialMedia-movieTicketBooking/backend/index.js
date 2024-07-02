@@ -114,7 +114,7 @@ app.post('/login', async (req, res) => {
     if (password == req.body.password) {
         const payload={"name":output[0].name,"profile":output[0].profile,"headline":output[0].headline}
       
-        const secret='9ff144e4b05534ebb403f60789e1618c83e3fa228621c0ae1e3db5b96376d99ac34d7098c75be6f68095b8f5f74e80011d58f25f93fd2340a72de09542d4a86a'
+        const secret=process.env.SECRET_KEY
         const token=jwt.sign(payload,secret)
        
         if(!token){
@@ -132,7 +132,7 @@ app.post('/login', async (req, res) => {
 
 // middleware
 function verifyLogin(req,res,next){
-    const secret='9ff144e4b05534ebb403f60789e1618c83e3fa228621c0ae1e3db5b96376d99ac34d7098c75be6f68095b8f5f74e80011d58f25f93fd2340a72de09542d4a86a'
+    const secret=process.env.SECRET_KEY
     const token=req.cookies.token
     jwt.verify(token,secret,(err,payload)=>{
         if(err) return res.sendStatus(403)
@@ -141,6 +141,20 @@ function verifyLogin(req,res,next){
     next()
 
 }
+
+
+
+// checking user already existed or not with middleWare verifyLogin 
+// before displaying posts
+app.get('/posts',verifyLogin,async(req, res) => {
+    const output= await readPosts()
+    res.render("posts",{
+        data:output,
+        userInfo:req.payload
+        
+    })
+   
+})
 
 // adding user into database
 app.post('/addUser',async(req,res)=>{
@@ -155,17 +169,9 @@ app.post('/addUser',async(req,res)=>{
 })
 
 
-// checking user already existed or not with middleWare verifyLogin 
-// before displaying posts
-app.get('/posts',verifyLogin,async(req, res) => {
-    const output= await readPosts()
-    res.render("posts",{
-        data:output,
-        userInfo:req.payload
-        
-    })
-   
-})
+
+
+
 
 app.post('/like',async(req,res)=>{
     
