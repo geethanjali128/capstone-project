@@ -1,0 +1,130 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 450px) {
+  .head {
+    text-align: center;
+    text-shadow: 2px 2px skyblue;
+    color: blueviolet;
+  }
+
+  .dropdown {
+    width: 300px;
+    align-self: center;
+  }
+
+  .showcase {
+    list-style-type: none;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .seat {
+    background-color: green;
+    height: 30px;
+    width: 35px;
+    border-top-left-radius: 30%;
+    border-top-right-radius: 30%;
+    margin: 5px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    align-self: center;
+  }
+
+  .seat.selected {
+    background-color: blue;
+  }
+
+  .seat.occupied {
+    background-color: grey;
+  }
+
+  .screen {
+    background-color: silver;
+    height: 80px;
+    width: 100%;
+    margin-left: 30px;
+    transform: perspective(300px) rotateX(-45deg);
+  }
+
+  .seat:nth-of-type(4n) {
+    margin-right: 20px;
+  }
+
+  .row {
+    margin-left: 40px;
+  }
+  #chooseSeat {
+    width: 460px;
+  }
+}
+
+@media screen and (max-width: 459px) {
+  .head {
+    text-align: center;
+    text-shadow: 2px 2px skyblue;
+    color: blueviolet;
+  }
+
+  .dropdown {
+    width: 300px;
+    align-self: center;
+  }
+
+  .showcase {
+    list-style-type: none;
+  }
+
+  .container {
+    display: block;
+    margin: 50px auto;
+  }
+
+  .seat {
+    background-color: green;
+    height: 30px;
+    width: 35px;
+    border-top-left-radius: 30%;
+    border-top-right-radius: 30%;
+    margin: 5px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    align-self: center;
+  }
+
+  .seat.selected {
+    background-color: blue;
+  }
+
+  .seat.occupied {
+    background-color: grey;
+  }
+
+  .screen {
+    background-color: silver;
+    height: 80px;
+    width: 100%;
+    margin: 0px;
+    transform: perspective(300px) rotateX(-45deg);
+  }
+
+  .seat:nth-of-type(4n) {
+    margin-right: 20px;
+  }
+
+  .row {
+    margin-left: 20px;
+  }
+  #chooseSeat {
+    width: 230px;
+  }
+}
